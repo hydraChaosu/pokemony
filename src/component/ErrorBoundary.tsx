@@ -1,7 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 
 interface Props {
-    children?: ReactNode;
+  children?: ReactNode;
 }
 
 interface ErrorBoundaryState {
@@ -9,7 +9,7 @@ interface ErrorBoundaryState {
 }
 
 class ErrorBoundary extends Component<Props, ErrorBoundaryState> {
-  constructor(props: {}) {
+  constructor(props: object) {
     super(props);
     this.state = { hasError: false };
   }
@@ -24,6 +24,7 @@ class ErrorBoundary extends Component<Props, ErrorBoundaryState> {
 
   render() {
     if (this.state.hasError) {
+      // eslint-disable-next-line react/react-in-jsx-scope
       return <h1>Something went wrong.</h1>;
     }
 
