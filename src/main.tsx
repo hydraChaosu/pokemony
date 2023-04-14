@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorBoundary from "./component/ErrorBoundary";
 import "./index.css";
 import Root from "./routes/Root";
+import store from "./store";
+import { Provider } from "react-redux";
 const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));
 const NotFoundView = React.lazy(() => import("./views/NotFoundView"));
 
@@ -33,7 +35,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </ErrorBoundary>
   </React.StrictMode>
 );

@@ -1,6 +1,4 @@
 lazy function
 usememo
 usecallback
-redux
-redux thunk
-tan stack w innym proj
+rtk query
