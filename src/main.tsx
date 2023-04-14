@@ -1,10 +1,43 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorBoundary from "./component/ErrorBoundary";
+import "./index.css";
+import Root from "./routes/Root";
+import store from "./store";
+import { Provider } from "react-redux";
+const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));
+const NotFoundView = React.lazy(() => import("./views/NotFoundView"));
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/pokemondle",
+        element: <div>Pokemondle!</div>,
+      },
+      {
+        path: "/pokeinfo",
+        element: <div>Pokeinfo!</div>,
+        //loader danych, pagging ,navigaton hook ,use navigation loader
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFoundView />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <ErrorBoundary>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ErrorBoundary>
+  </React.StrictMode>
+);
