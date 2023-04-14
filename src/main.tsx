@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorBoundary from "./component/ErrorBoundary";
 import "./index.css";
-import { NotFoundView } from "./views/NotFoundView";
 import Root from "./routes/Root";
-import ErrorPage from "./routes/ErrorPage";
+const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));
+const NotFoundView = React.lazy(() => import("./views/NotFoundView"));
 
 const router = createBrowserRouter([
   {

@@ -1,6 +1,6 @@
-suspense
 lazy function
-lazy component
-memo
+usememo
+usecallback
 redux
 redux thunk
+tan stack w innym proj
