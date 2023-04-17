@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const pokemondleSlice = createSlice({
-  name: "counter",
+  name: "pokemondle",
   initialState: {
     count: 0,
+    guesses: [],
   },
   reducers: {
     guess: (state, action) => {
@@ -17,6 +18,10 @@ export const pokemondleSlice = createSlice({
     },
     guessCount: (state) => {
       state.count += 1;
+    },
+    reset: (state) => {
+      state.count = 0;
+      state.guesses = [];
     },
   },
 });
