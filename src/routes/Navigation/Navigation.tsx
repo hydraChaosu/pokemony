@@ -1,11 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
-import "./Root.scss";
+import "./Navigation.scss";
+import "css.gg/icons/css/pokemon.css";
 
 export default function Navigation() {
   return (
     <>
       <div className="navigation__logo">
-        <p>Pokemon App</p>
+        <i className="gg-pokemon"></i>
       </div>
       <nav className="navigation__nav">
         <ul className="navigation__list">
@@ -26,9 +27,6 @@ export default function Navigation() {
           </li>
         </ul>
       </nav>
-      <div className="navigation__outlet">
-        <Outlet />
-      </div>
     </>
   );
 }
