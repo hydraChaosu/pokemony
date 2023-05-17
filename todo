@@ -1,18 +1,28 @@
+nav
+
+pokemonsearch component
+get 20
+pagging
+details of the pokemon
+search pokemon
+
 lazy function
 
 usememo
 usecallback
-rtk query
 
 custom hook
-
 uzywaj use callback na custom hooki
 
 get all pokemon
+use loader react router
+
 search for pokemon
+rtk query
 
 get details of certain pokemon
 pokemon card
+useQuery tanstack
 
 create contex for theme
 
@@ -20,11 +30,13 @@ useselector
 
 pokemonAPI
 search pokemony z paggingingiem
+rtk query
 
 usecontext
-useQuery tanstack
 
 react forms
 send email to prof oak
 
 auth admin for data display
+
+style

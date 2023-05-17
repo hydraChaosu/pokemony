@@ -18,7 +18,7 @@ export const pokemonSlice = createSlice({
       state.pokemons = action.payload;
     },
     filterPokemons: (state, action) => {
-      state.pokemons = state.pokemons.filter((pokemon) => {
+      state.pokemons = state.pokemons.filter((pokemon: any) => {
         return pokemon.name
           .toLowerCase()
           .includes(action.payload.toLowerCase());
@@ -26,18 +26,18 @@ export const pokemonSlice = createSlice({
     },
   },
 
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchPokemon.fulfilled, (state, action) => {
-        state.pokemons = action.payload;
-      })
-      .addCase(fetchPokemon.pending, (state) => {
-        state.pokemons = [];
-      })
-      .addCase(fetchPokemon.rejected, (state) => {
-        state.pokemons = [];
-      });
-  },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(fetchPokemon.fulfilled, (state, action) => {
+  //       state.pokemons = action.payload;
+  //     })
+  //     .addCase(fetchPokemon.pending, (state) => {
+  //       state.pokemons = [];
+  //     })
+  //     .addCase(fetchPokemon.rejected, (state) => {
+  //       state.pokemons = [];
+  //     });
+  // },
 });
 
 export const { setPage, setPerPage, setPokemons } = pokemonSlice.actions;

@@ -1,32 +1,32 @@
 import { NavLink, Outlet } from "react-router-dom";
+import "./Root.scss";
 
-export default function Root() {
+export default function Navigation() {
   return (
     <>
-      <div>
-        <p>pokemon app</p>
+      <div className="navigation__logo">
+        <p>Pokemon App</p>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <NavLink
-              to={`/pokemondle`}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              pokemondle
+      <nav className="navigation__nav">
+        <ul className="navigation__list">
+          <li className="navigation__list-item">
+            <NavLink to="/pokemondle" className="navigation__link">
+              Pokemondle
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to={`/pokeinfo`}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              pokeinfo
+          <li className="navigation__list-item">
+            <NavLink to="/pokeinfo" className="navigation__link">
+              Pokeinfo
+            </NavLink>
+          </li>
+          <li className="navigation__list-item">
+            <NavLink to="/pokemail" className="navigation__link">
+              Pokemail
             </NavLink>
           </li>
         </ul>
       </nav>
-      <div>
+      <div className="navigation__outlet">
         <Outlet />
       </div>
     </>
