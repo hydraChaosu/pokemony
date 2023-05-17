@@ -22,7 +22,23 @@ const router = createBrowserRouter([
       {
         path: "/pokeinfo",
         element: <div>Pokeinfo!</div>,
-        //loader danych, pagging ,navigaton hook ,use navigation loader
+        loader: async ({ request, params }) => {
+          // const url = new URL(request.url);
+          // const offset = url.params.get("offset");
+          // const limit = url.params.get("limit");
+          // return searchProducts(searchTerm);
+          const res = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20`
+          );
+          if (res.status === 404) {
+            throw new Response("Not Found", { status: 404 });
+          }
+          return res.json();
+        },
+      },
+      {
+        path: "/pokemail",
+        element: <div>Pokemail!</div>,
       },
     ],
   },
