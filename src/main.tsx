@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorBoundary from "./component/ErrorBoundary";
 import "./index.css";
-import Root from "./routes/Root";
+import Root from "./routes/Root/Root";
 import store from "./store";
 import { Provider } from "react-redux";
 const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));

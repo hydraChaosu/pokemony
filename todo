@@ -1,5 +1,3 @@
-nav
-
 pokemonsearch component
 get 20
 pagging
@@ -40,3 +38,5 @@ send email to prof oak
 auth admin for data display
 
 style
+
+poratl popup
