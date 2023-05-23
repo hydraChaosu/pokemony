@@ -5,10 +5,10 @@ import Navigation from "../Navigation/Navigation";
 export default function Root() {
   return (
     <div className="main">
-      <div className="navigation">
+      <div className="main__navigation">
         <Navigation />
       </div>
-      <div className="outlet">
+      <div className="main__outlet">
         <Outlet />
       </div>
     </div>

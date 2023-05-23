@@ -1,12 +1,26 @@
 @import "../../styles/variables.scss";
-
-.outlet {
-  display: flex;
-  width: 100vw;
-  height: 90vh;
-  background-color: pink;
-}
+@import "../../styles/mixins.scss";
 
 .main {
-  
+  font-family: 'Roboto', sans-serif;
+  &__outlet {
+    display: flex;
+    flex-grow: 1;
+    width: 100vw;
+    height: 90vh;
+    background-color: $pokeball-top-color;
+    padding: 5px;
+  }  
+
+  &__navigation {
+    border-bottom: 2px solid $pokeball-middle-color;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 10vh;
+    background-color: $pokeball-bottom-color;
+  }
 }
+
+
+

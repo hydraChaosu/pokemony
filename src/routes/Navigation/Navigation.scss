@@ -3,14 +3,6 @@
 
 .navigation {
 
-  border-bottom: 2px solid $pokeball-middle-color;
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  height: 10vh;
-  padding: 10px 0;
-  background-color: $pokeball-bottom-color;
-
   &__nav {
     @include flex-center;
   }
