@@ -1,9 +1,5 @@
-not found view style link
-
-style pokeoinfo
-style pokecard
-
 pagging
+
 details of the pokemon try loader
 
 sciezka `/pokemon/${pokemonId}`
@@ -22,22 +18,18 @@ search for pokemon
 useQuery tanstack
 usecontext do szukania pokemona stan szukajki tylko
 
-get details of certain pokemon
-pokemon card
-
 useselector
 
 pokemonAPI
 search pokemony z paggingingiem
 rtk query
 
-react forms
-send email to prof oak
-
-auth admin for data display
-
 rtk query do pokemndle zapytanie wyboru poka
 
+react forms
+send email to prof oak
 use ref w formie
+use portal jako modal potwierdzenie formularza
 
-use portal jako modal
+
+

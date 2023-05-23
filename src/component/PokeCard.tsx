@@ -6,18 +6,16 @@ const PokeCard = ({ name, url }: Pokemon) => {
   const pokemonId = cleanUrl[cleanUrl.length - 2];
 
   return (
-    <Link to={`/pokemon/${pokemonId}`}>
-      <div className="pokecard">
-        <div className="pokecard__image">
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}
-            alt={`pokemon ${name}`}
-          />
-        </div>
-        <div className="pokecard__info">
-          <div className="pokecard__name">{name}</div>
-          <div className="pokecard__number">{pokemonId}</div>
-        </div>
+    <Link to={`/pokemon/${pokemonId}`} className="pokecard">
+      <div className="pokecard__number">{pokemonId}</div>
+      <div className="pokecard__image">
+        <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`}
+          alt={`pokemon ${name}`}
+        />
+      </div>
+      <div className="pokecard__info">
+        <div className="pokecard__info-name">{name}</div>
       </div>
     </Link>
   );
