@@ -1,0 +1,9 @@
+.notFound {
+    display: flex;
+    flex-direction: column;
+    &-link {
+        display: inline-block;
+        list-style: none;
+        text-decoration: none;
+    }
+}

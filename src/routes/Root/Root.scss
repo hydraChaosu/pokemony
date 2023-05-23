@@ -4,11 +4,14 @@
 .main {
   &__outlet {
     display: flex;
+    flex-wrap: wrap;
     flex-grow: 1;
     width: 100vw;
     height: 90vh;
     background-color: $pokeball-top-color;
     padding: 5px;
+    justify-content: center;
+    align-items: center;
   }  
 
   &__navigation {
