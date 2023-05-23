@@ -1,8 +1,14 @@
-pokemonsearch component
-get 20
+not found view style link
+
+style pokeoinfo
+style pokecard
+
 pagging
-details of the pokemon
-search pokemon
+details of the pokemon try loader
+
+sciezka `/pokemon/${pokemonId}`
+loader poke details and style it, back navigation
+poke details
 
 lazy function
 
@@ -12,17 +18,12 @@ usecallback
 custom hook
 uzywaj use callback na custom hooki
 
-get all pokemon
-use loader react router
-
 search for pokemon
-rtk query
+useQuery tanstack
+usecontext do szukania pokemona stan szukajki tylko
 
 get details of certain pokemon
 pokemon card
-useQuery tanstack
-
-create contex for theme
 
 useselector
 
@@ -30,11 +31,13 @@ pokemonAPI
 search pokemony z paggingingiem
 rtk query
 
-usecontext
-
 react forms
 send email to prof oak
 
 auth admin for data display
 
-style
+rtk query do pokemndle zapytanie wyboru poka
+
+use ref w formie
+
+use portal jako modal
