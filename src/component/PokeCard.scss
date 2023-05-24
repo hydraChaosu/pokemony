@@ -6,10 +6,19 @@
     list-style: none;
     text-decoration: none;
     padding: 5px;
-    margin: 1rem;
+    margin: .5rem;
     border: $pokeball-middle-color 2px solid;
     border-radius: 5%;
     color: $pokeball-bottom-color;
+    flex-grow: 1;
+    
+    &__image {
+        margin: auto;
+        img {
+            height: 96px;
+            width: 96px;
+        }
+    }
 
     &:hover {
         border-color: $pokeball-bottom-color;

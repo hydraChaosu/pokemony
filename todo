@@ -2,7 +2,9 @@ pagging
 
 details of the pokemon try loader
 
-sciezka `/pokemon/${pokemonId}`
+do info o pokach storn tez tanstakc query
+
+sciezka `/pokemon/${pokemonId}` do tego tanstack query
 loader poke details and style it, back navigation
 poke details
 
@@ -14,22 +16,17 @@ usecallback
 custom hook
 uzywaj use callback na custom hooki
 
+GET https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1999
+
 search for pokemon
-useQuery tanstack
+useQuery tanstack, get all pokemons
 usecontext do szukania pokemona stan szukajki tylko
-
-useselector
-
-pokemonAPI
-search pokemony z paggingingiem
-rtk query
-
-rtk query do pokemndle zapytanie wyboru poka
 
 react forms
 send email to prof oak
 use ref w formie
 use portal jako modal potwierdzenie formularza
 
-
+useselector
+rtk query do pokemndle zapytanie wyboru poka
 

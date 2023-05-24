@@ -1,2 +1,2 @@
-GET https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20 HTTP/1.1
+GET https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1010 HTTP/1.1
 Content-Type: application/json
