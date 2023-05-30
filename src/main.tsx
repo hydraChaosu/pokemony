@@ -39,6 +39,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
         loader: async ({ request, params }) => {
+          console.log("Loading", request);
           const response = await queryClient.fetchQuery(
             [`pokemonData${params.currentPage}`],
             {
