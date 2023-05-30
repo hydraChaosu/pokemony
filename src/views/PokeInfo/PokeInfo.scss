@@ -3,6 +3,9 @@
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
     align-content: baseline;
+    &:after {
+        content: "";
+        flex: auto;
+      }
 }

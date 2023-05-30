@@ -10,10 +10,16 @@ import LoadingSpinner from "./component/LoadingSpinner";
 const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));
 const NotFound = React.lazy(() => import("./views/NotFound/NotFound"));
 const PokeInfo = React.lazy(() => import("./views/PokeInfo/PokeInfo"));
-
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -33,15 +39,22 @@ const router = createBrowserRouter([
           </Suspense>
         ),
         loader: async ({ request, params }) => {
-          const res = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/?offset=${
-              Number(params.currentPage) * 20
-            }&limit=20`
+          console.log("Loading", request);
+          const response = await queryClient.fetchQuery(
+            [`pokemonData${params.currentPage}`],
+            {
+              queryFn: () =>
+                fetch(
+                  `https://pokeapi.co/api/v2/pokemon/?offset=${
+                    Number(params.currentPage) * 40
+                  }&limit=40`
+                ),
+            }
           );
-          if (res.status === 404) {
+          if (response.status === 404) {
             throw new Response("Not Found", { status: 404 });
           }
-          return res.json();
+          return response.json();
         },
       },
       {
@@ -58,10 +71,12 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      </ErrorBoundary>
+    </QueryClientProvider>
   </React.StrictMode>
 );
