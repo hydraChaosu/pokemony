@@ -10,16 +10,18 @@ import LoadingSpinner from "./component/LoadingSpinner";
 const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));
 const NotFound = React.lazy(() => import("./views/NotFound/NotFound"));
 const PokeInfo = React.lazy(() => import("./views/PokeInfo/PokeInfo"));
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ request, params }) => {
           console.log("Loading", request);
+
           const response = await queryClient.fetchQuery(
             [`pokemonData${params.currentPage}`],
             {

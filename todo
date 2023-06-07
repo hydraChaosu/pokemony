@@ -1,20 +1,12 @@
 details of the pokemon try loader
-
 do info o pokach storn tez tanstakc query
-
 sciezka `/pokemon/${pokemonId}` do tego tanstack query
 loader poke details and style it, back navigation
 poke details
 
 lazy function
-
 usememo
 usecallback
-
-custom hook
-uzywaj use callback na custom hooki
-
-GET https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1999
 
 search for pokemon
 useQuery tanstack, get all pokemons
