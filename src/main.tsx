@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { ReactElement, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorBoundary from "./component/ErrorBoundary";
@@ -10,7 +10,13 @@ import LoadingSpinner from "./component/LoadingSpinner";
 const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));
 const NotFound = React.lazy(() => import("./views/NotFound/NotFound"));
 const PokeInfo = React.lazy(() => import("./views/PokeInfo/PokeInfo"));
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const PokeDetails = React.lazy(() => import("./views/PokeDetails/PokeDetails"));
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryObserverResult,
+} from "@tanstack/react-query";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -22,6 +28,9 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+type FetchPokemonDataResult = QueryObserverResult<PokemonData, Response>;
+type FetchPokemonDataQueryKey = [`pokemonData${string}`];
 
 const router = createBrowserRouter([
   {
@@ -40,11 +49,9 @@ const router = createBrowserRouter([
             <PokeInfo />
           </Suspense>
         ),
-        loader: async ({ request, params }) => {
-          console.log("Loading", request);
-
-          const response = await queryClient.fetchQuery(
-            [`pokemonData${params.currentPage}`],
+        loader: async ({ params }) => {
+          const response: FetchPokemonDataResult = await queryClient.fetchQuery(
+            [`pokemonData${params.currentPage}`] as FetchPokemonDataQueryKey,
             {
               queryFn: () =>
                 fetch(
@@ -54,10 +61,31 @@ const router = createBrowserRouter([
                 ),
             }
           );
+          if (response.status === "error") {
+            throw new Response("Not Found", { status: 404 });
+          }
+          return response;
+        },
+      },
+      {
+        path: "/pokemon/:id",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <PokeDetails />
+          </Suspense>
+        ),
+        loader: async ({ params }) => {
+          const response = await queryClient.fetchQuery(
+            [`pokemonData${params.id}`],
+            {
+              queryFn: () =>
+                fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}/`),
+            }
+          );
           if (response.status === 404) {
             throw new Response("Not Found", { status: 404 });
           }
-          return response.json();
+          return response;
         },
       },
       {

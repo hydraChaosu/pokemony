@@ -1,8 +1,4 @@
-details of the pokemon try loader
-do info o pokach storn tez tanstakc query
-sciezka `/pokemon/${pokemonId}` do tego tanstack query
-loader poke details and style it, back navigation
-poke details
+style it poke details
 
 lazy function
 usememo
@@ -19,8 +15,5 @@ use portal jako modal potwierdzenie formularza
 
 useselector
 rtk query do pokemndle zapytanie wyboru poka
-
-loader spin dla elementu i calych elemoentow
-loader dla listy
 
 types
