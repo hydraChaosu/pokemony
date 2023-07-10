@@ -1,0 +1,5 @@
+@import 'maps.scss';
+
+@function get-color($class-name) {
+    @return map-get($stats-map, $class-name);
+}

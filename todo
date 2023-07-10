@@ -1,4 +1,7 @@
 style it poke details
+typy kolor zalezny od typu, className "$typ-dfsdf"
+ability bugged, dac taki sam dl < zrobic tooltip component
+
 
 lazy function
 usememo
@@ -10,7 +13,7 @@ usecontext do szukania pokemona stan szukajki tylko
 
 react forms
 send email to prof oak
-use ref w formie
+use ref w formie, most recent input state
 use portal jako modal potwierdzenie formularza
 
 useselector

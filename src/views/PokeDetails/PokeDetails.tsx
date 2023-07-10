@@ -2,7 +2,8 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import "./PokeDetails.scss";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../../component/LoadingSpinner";
+import LoadingSpinner from "@/component/LoadingSpinner";
+import Tooltip from "@/component/Tooltip";
 
 const PokeDetails = () => {
   const pokemonDetails: PokemonDetails = useLoaderData() as PokemonDetails;
@@ -43,41 +44,72 @@ const PokeDetails = () => {
   };
 
   return (
-    <div>
-      <h1>{pokemonDetails.name}</h1>
-      <img src={pokemonDetails.sprites.front_default} alt="" />
-      <img src={pokemonDetails.sprites.front_shiny} alt="" />
-      <p>Height: {pokemonDetails.height}</p>
-      <p>Weight: {pokemonDetails.weight}</p>
-      <ul>
+    <div className="pokedetails">
+      <h1 className="pokedetails__name">{pokemonDetails.name}</h1>
+      <div className="pokedatils__image-container">
+        <img
+          className="pokedetails__image"
+          src={pokemonDetails.sprites.front_default}
+          alt=""
+        />
+        <img
+          className="pokedetails__image"
+          src={pokemonDetails.sprites.front_shiny}
+          alt=""
+        />
+      </div>
+      <div>
+        <p className="pokedetails__info">
+          Height: {pokemonDetails.height / 10} m
+        </p>
+        <p className="pokedetails__info">
+          Weight: {pokemonDetails.weight / 10} kg
+        </p>
+      </div>
+      <ul className="pokedetails__list">
         Stats:
         {pokemonDetails.stats.map((stats) => (
-          <li key={`${stats.base_stat}${stats.stat.name}`}>
+          <li
+            className={`pokedetails__list-item ${stats.stat.name}`}
+            key={`${stats.base_stat}${stats.stat.name}`}
+          >
             {stats.stat.name}: {stats.base_stat}
           </li>
         ))}
       </ul>
-      <ul>
+      <ul className="pokedetails__list">
         Abilities:
         {pokemonDetails.abilities.map((abilities, index) => (
           <li
-            style={{ position: "relative", cursor: "pointer" }}
             key={abilities.ability.name}
+            className="pokedetails__list-item ability"
             onMouseOver={(e) => showAdditionalData(e, index)}
             onMouseLeave={() => setShowAbilityInfo(false)}
           >
-            {abilities.ability.name}
+            <Tooltip
+              content={tooltip}
+              key={abilities.ability.name}
+              isLoading={isLoading}
+            >
+              {abilities.ability.name}
+            </Tooltip>
           </li>
         ))}
-        {isLoading ? <LoadingSpinner /> : showAbilityInfo && <p>{tooltip}</p>}
       </ul>
-      <ul>
+      <ul className="pokedetails__list">
         Types:
         {pokemonDetails.types.map((types) => (
-          <li key={types.type.name}>{types.type.name}</li>
+          <li
+            className={`pokedetails__list-item ${types.type.name}`}
+            key={types.type.name}
+          >
+            {types.type.name}
+          </li>
         ))}
       </ul>
-      <button onClick={() => navigate(-1)}>Go back</button>
+      <button className="pokedetails__button" onClick={() => navigate(-1)}>
+        Go back
+      </button>
     </div>
   );
 };
