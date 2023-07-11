@@ -1,0 +1,200 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/functions.scss";
+@import "../../styles/maps.scss";
+
+.pokedetails {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+
+    &__name {
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: capitalize;
+        margin: 1rem 0;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+
+        &-item {
+            display: inline-block;
+            padding: 0.5rem;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
+            text-transform: capitalize;
+            font-weight: bold;
+            color: $pokeball-top-color;
+            background-color: $pokeball-middle-color;
+
+            &.attack {
+                background-color: get-color($stats-map,"attack");
+            }
+            &.defense {
+                background-color: get-color($stats-map,"defense");
+            }
+            &.special-attack {
+                background-color: get-color($stats-map,"special-attack");
+            }
+            &.speed {
+                background-color: get-color($stats-map,"speed");
+            }
+            &.special-defense {
+                background-color: get-color($stats-map,"special-defense");
+            }
+            &.hp {
+                background-color: get-color($stats-map,"hp");
+            } 
+            &.ability {
+                position: "relative";
+                cursor: "pointer";
+            }
+
+            &.normal {
+                background-color: get-color($types-map,"normal");
+            }
+            &.fighting {
+                background-color: get-color($types-map,"fighting");
+            }
+            &.flying {
+                background-color: get-color($types-map,"flying");
+            }
+            &.poison {
+                background-color: get-color($types-map,"poison");
+            }
+            &.ground {
+                background-color: get-color($types-map,"ground");
+            }
+            &.rock {
+                background-color: get-color($types-map,"rock");
+            }
+            &.bug {
+                background-color: get-color($types-map,"bug");
+            }
+            &.ghost {
+                background-color: get-color($types-map,"ghost");
+            }
+            &.steel {
+                background-color: get-color($types-map,"steel");
+            }
+            &.fire {
+                background-color: get-color($types-map,"fire");
+            }
+            &.water {
+                background-color: get-color($types-map,"water");
+            }
+            &.grass {
+                background-color: get-color($types-map,"grass");
+            }
+            &.electric {
+                background-color: get-color($types-map,"electric");
+            }
+            &.psychic {
+                background-color: get-color($types-map,"psychic");
+            }
+            &.ice {
+                background-color: get-color($types-map,"ice");
+            }
+            &.dragon {
+                background-color: get-color($types-map,"dragon");
+            }
+            &.dark {
+                background-color: get-color($types-map,"dark");
+            }
+            &.fairy {
+                background-color: get-color($types-map,"fairy");
+            }
+            
+
+
+
+        }
+
+    }
+
+    &__button {
+        display: block;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-transform: capitalize;
+        font-weight: bold;
+        color: $pokeball-top-color;
+        background-color: $pokeball-middle-color;
+        border: none;
+        cursor: pointer;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+        display: inline-block;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        border-radius: 0.5rem;
+        text-transform: capitalize;
+        font-weight: bold;
+        color: $pokeball-top-color;
+        background-color: $pokeball-middle-color;
+    }
+
+    &___stats {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
+            text-transform: capitalize;
+            font-weight: bold;
+            color: $pokeball-top-color;
+            background-color: $pokeball-middle-color;
+            width: 100px;
+            height: 100px;
+
+            &-name {
+                font-size: 0.8rem;
+            }
+
+            &-value {
+                font-size: 1.2rem;
+            }
+
+
+        }
+    }
+
+    &-tooltip {
+        position: absolute;
+        top: -20px;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+        width: 120px;
+        background-color: $pokeball-top-color;
+        color: $pokeball-middle-color;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px;
+        z-index: 1;
+      }
+}
+

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorBoundary from "./component/ErrorBoundary";
@@ -6,8 +6,31 @@ import "./index.css";
 import Root from "./routes/Root/Root";
 import store from "./store";
 import { Provider } from "react-redux";
+import LoadingSpinner from "./component/LoadingSpinner";
 const ErrorPage = React.lazy(() => import("./routes/ErrorPage"));
-const NotFoundView = React.lazy(() => import("./views/NotFoundView"));
+const NotFound = React.lazy(() => import("./views/NotFound/NotFound"));
+const PokeInfo = React.lazy(() => import("./views/PokeInfo/PokeInfo"));
+const PokeDetails = React.lazy(() => import("./views/PokeDetails/PokeDetails"));
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryObserverResult,
+} from "@tanstack/react-query";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
+
+type FetchPokemonDataResult = QueryObserverResult<PokemonData, Response>;
+type FetchPokemonDataQueryKey = [`pokemonData${string}`];
 
 const router = createBrowserRouter([
   {
@@ -20,40 +43,71 @@ const router = createBrowserRouter([
         element: <div>Pokemondle!</div>,
       },
       {
-        path: "/pokeinfo",
-        element: <div>Pokeinfo!</div>,
-        loader: async ({ request, params }) => {
-          // const url = new URL(request.url);
-          // const offset = url.params.get("offset");
-          // const limit = url.params.get("limit");
-          // return searchProducts(searchTerm);
-          const res = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20`
+        path: "/pokeinfo/:currentPage",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <PokeInfo />
+          </Suspense>
+        ),
+        loader: async ({ params }) => {
+          const response: FetchPokemonDataResult = await queryClient.fetchQuery(
+            [`pokemonData${params.currentPage}`] as FetchPokemonDataQueryKey,
+            {
+              queryFn: () =>
+                fetch(
+                  `https://pokeapi.co/api/v2/pokemon/?offset=${
+                    Number(params.currentPage) * 40
+                  }&limit=40`
+                ),
+            }
           );
-          if (res.status === 404) {
+          if (response.status === "error") {
             throw new Response("Not Found", { status: 404 });
           }
-          return res.json();
+          return response;
+        },
+      },
+      {
+        path: "/pokemon/:id",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <PokeDetails />
+          </Suspense>
+        ),
+        loader: async ({ params }) => {
+          const response = await queryClient.fetchQuery(
+            [`pokemonData${params.id}`],
+            {
+              queryFn: () =>
+                fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}/`),
+            }
+          );
+          if (response.status === 404) {
+            throw new Response("Not Found", { status: 404 });
+          }
+          return response;
         },
       },
       {
         path: "/pokemail",
         element: <div>Pokemail!</div>,
       },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
     ],
-  },
-  {
-    path: "*",
-    element: <NotFoundView />,
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+root.render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      </ErrorBoundary>
+    </QueryClientProvider>
   </React.StrictMode>
 );

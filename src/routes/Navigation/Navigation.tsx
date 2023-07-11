@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navigation.scss";
 import "css.gg/icons/css/pokemon.css";
 
@@ -16,7 +16,7 @@ export default function Navigation() {
             </NavLink>
           </li>
           <li className="navigation__list-item">
-            <NavLink to="/pokeinfo" className="navigation__link">
+            <NavLink to="/pokeinfo/0" className="navigation__link">
               Pokeinfo
             </NavLink>
           </li>

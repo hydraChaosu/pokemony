@@ -1,0 +1,41 @@
+@import "../styles/variables.scss";
+
+.pokecard {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    text-decoration: none;
+    padding: 5px;
+    margin: .5rem;
+    border: $pokeball-middle-color 2px solid;
+    border-radius: 5%;
+    color: $pokeball-bottom-color;
+    flex-grow: 1;
+    // max-width: fit-content;
+    
+    &__image {
+        margin: auto;
+        img {
+            height: 96px;
+            width: 96px;
+        }
+    }
+
+    &:hover {
+        border-color: $pokeball-bottom-color;
+        transition: .3;
+        color: $pokeball-middle-color;
+        box-shadow:-2px 0 $pokeball-middle-color, 0 2px $pokeball-middle-color, 2px 0 $pokeball-middle-color, 0 -2px $pokeball-middle-color;
+    }
+
+    &__number {
+        text-align: end;
+    }
+
+    &__info {
+        &-name {
+            text-align: center;
+            font-weight: 300;
+        }
+    }
+}

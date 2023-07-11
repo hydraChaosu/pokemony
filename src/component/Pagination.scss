@@ -1,0 +1,43 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.pagination {
+    &__list {
+        @include flex-center;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    &__item {
+        display: inline-block;
+        margin: 5px;
+        border: 2px solid $pokeball-middle-color;
+        color: $pokeball-middle-color;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+            border-color: $pokeball-bottom-color;
+            transition: .3;
+            box-shadow:-2px 0 $pokeball-middle-color, 0 2px $pokeball-middle-color, 2px 0 $pokeball-middle-color, 0 -2px $pokeball-middle-color;
+        }
+    }
+    &__item .active {
+        color: $pokeball-bottom-color;
+        border-color: $pokeball-bottom-color;
+    }
+
+    &__link {
+        @include flex-center;
+        text-decoration: none;
+        color: $pokeball-middle-color;
+        padding: 15px;
+        width: 19px;
+        height: 19px;
+
+        &:hover {
+            transition: .3;
+            color: $pokeball-bottom-color;
+        }
+    }
+}
