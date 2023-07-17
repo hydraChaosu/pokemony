@@ -10,8 +10,13 @@ react forms
 send email to prof oak
 use ref w formie, most recent input state
 use portal jako modal potwierdzenie formularza
+dialog jako inny modal
 
 useselector
 rtk query do pokemndle zapytanie wyboru poka
 
 poratl popup
+
+merguj do deva i potem do mastera
+
+typy testy

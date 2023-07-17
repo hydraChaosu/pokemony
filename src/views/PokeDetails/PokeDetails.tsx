@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import "./PokeDetails.scss";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "@/component/LoadingSpinner";
 import Tooltip from "@/component/Tooltip";
@@ -12,7 +12,7 @@ const PokeDetails = () => {
   const [tooltip, setTooltip] = useState("");
   const navigate = useNavigate();
 
-  const fetchPokemonAbilitiesDetailsInfo = async () => {
+  const fetchPokemonAbilitiesDetailsInfo = useCallback(async () => {
     const response = await fetch(
       pokemonDetails.abilities[currentAbility].ability.url
     );
@@ -20,7 +20,8 @@ const PokeDetails = () => {
       throw new Error("Network response was not ok");
     }
     return response.json();
-  };
+  }, [currentAbility, pokemonDetails.abilities]);
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: [
       "pokemonAbility",
@@ -30,18 +31,29 @@ const PokeDetails = () => {
     queryFn: fetchPokemonAbilitiesDetailsInfo,
   });
 
-  const showAdditionalData = async (
-    event: React.MouseEvent<HTMLLIElement>,
-    abilityId: number
-  ) => {
-    setCurrentAbility(abilityId);
-    if (data.effect_entries[0].language.name === "en") {
-      setTooltip(data.effect_entries[0].effect);
-    } else {
-      setTooltip(data.effect_entries[1].effect);
-    }
-    setShowAbilityInfo(true);
-  };
+  const showAdditionalData = useCallback(
+    async (event: React.MouseEvent<HTMLLIElement>, abilityId: number) => {
+      setCurrentAbility(abilityId);
+      if (data.effect_entries[0].language.name === "en") {
+        setTooltip(data.effect_entries[0].effect);
+      } else {
+        setTooltip(data.effect_entries[1].effect);
+      }
+      setShowAbilityInfo(true);
+    },
+    [currentAbility]
+  );
+
+  const pokemonStats = useMemo(() => {
+    return pokemonDetails.stats.map((stats) => (
+      <li
+        className={`pokedetails__list-item ${stats.stat.name}`}
+        key={`${stats.base_stat}${stats.stat.name}`}
+      >
+        {stats.stat.name}: {stats.base_stat}
+      </li>
+    ));
+  }, [pokemonDetails.stats]);
 
   return (
     <div className="pokedetails">
@@ -68,14 +80,7 @@ const PokeDetails = () => {
       </div>
       <ul className="pokedetails__list">
         Stats:
-        {pokemonDetails.stats.map((stats) => (
-          <li
-            className={`pokedetails__list-item ${stats.stat.name}`}
-            key={`${stats.base_stat}${stats.stat.name}`}
-          >
-            {stats.stat.name}: {stats.base_stat}
-          </li>
-        ))}
+        {pokemonStats}
       </ul>
       <ul className="pokedetails__list">
         Abilities:

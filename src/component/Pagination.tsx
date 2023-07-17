@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import "./Pagination.scss";
 
 const infoPerPage = 40;
-const indexOfirstPage = 0;
+const indexOfirstPage = 1;
 const indexOfLastPage = 32;
 
 const Pagination = () => {
