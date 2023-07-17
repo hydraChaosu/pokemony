@@ -1,22 +1,17 @@
-import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Pagination.scss";
 
 const infoPerPage = 40;
-const indexOfirstPage = 0;
-const indexOfLastPage = 32;
+const indexOfirstPage = 1;
+const indexOfLastPage = 33;
 
 const Pagination = () => {
-  const { currentPage } = useParams();
   const [pageNumbers, setPageNumbers] = useState(
     Array(indexOfLastPage)
-      .fill(0)
+      .fill(indexOfirstPage)
       .map((_, index) => index + 1)
   );
-
-  useEffect(() => {
-    console.log(currentPage);
-  }, [currentPage]);
 
   return (
     <nav className="pagination">
@@ -34,7 +29,3 @@ const Pagination = () => {
 };
 
 export default Pagination;
-
-// pagging component
-
-// q: how to use github copilot?

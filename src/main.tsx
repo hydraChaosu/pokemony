@@ -41,6 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/pokemondle",
         element: <div>Pokemondle!</div>,
+        index: true,
       },
       {
         path: "/pokeinfo/:currentPage",
@@ -50,13 +51,14 @@ const router = createBrowserRouter([
           </Suspense>
         ),
         loader: async ({ params }) => {
+          const currentPage = Number(params.currentPage) || 1;
           const response: FetchPokemonDataResult = await queryClient.fetchQuery(
-            [`pokemonData${params.currentPage}`] as FetchPokemonDataQueryKey,
+            [`pokemonData${currentPage}`] as FetchPokemonDataQueryKey,
             {
               queryFn: () =>
                 fetch(
                   `https://pokeapi.co/api/v2/pokemon/?offset=${
-                    Number(params.currentPage) * 40
+                    Number(Number(currentPage) - 1) * 40
                   }&limit=40`
                 ),
             }
