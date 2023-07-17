@@ -1,34 +1,18 @@
-details of the pokemon try loader
-
-do info o pokach storn tez tanstakc query
-
-sciezka `/pokemon/${pokemonId}` do tego tanstack query
-loader poke details and style it, back navigation
-poke details
-
-lazy function
-
-usememo
-usecallback
-
-custom hook
-uzywaj use callback na custom hooki
-
-GET https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1999
-
 search for pokemon
 useQuery tanstack, get all pokemons
 usecontext do szukania pokemona stan szukajki tylko
 
 react forms
 send email to prof oak
-use ref w formie
+use ref w formie, most recent input state
 use portal jako modal potwierdzenie formularza
+dialog jako inny modal
 
 useselector
 rtk query do pokemndle zapytanie wyboru poka
 
-loader spin dla elementu i calych elemoentow
-loader dla listy
+poratl popup
 
-types
+merguj do deva i potem do mastera
+
+typy testy

@@ -1,19 +1,16 @@
-import { useEffect } from "react";
 import PokeCard from "../../component/PokeCard";
 import { useLoaderData } from "react-router-dom";
 import "./PokeInfo.scss";
 import Pagination from "../../component/Pagination";
+import { useMemo } from "react";
 
 const Pokeinfo = () => {
   const pokemonData: PokemonData = useLoaderData() as PokemonData;
-
-  useEffect(() => {
-    console.log(pokemonData);
-  }, []);
-
-  const pokemons = pokemonData.results.map((data: Pokemon) => (
-    <PokeCard key={data.name} {...data} />
-  ));
+  const pokemons = useMemo(() => {
+    return pokemonData.results.map((data: Pokemon) => (
+      <PokeCard key={data.name} {...data} />
+    ));
+  }, [pokemonData]);
 
   return (
     <div className="pokeinfo">

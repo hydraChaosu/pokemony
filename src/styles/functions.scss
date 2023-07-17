@@ -1,0 +1,3 @@
+@function get-color($map-name, $class-name) {
+    @return map-get($map-name, $class-name);
+}
