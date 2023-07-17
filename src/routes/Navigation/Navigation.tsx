@@ -16,7 +16,7 @@ export default function Navigation() {
             </NavLink>
           </li>
           <li className="navigation__list-item">
-            <NavLink to="/pokeinfo/0" className="navigation__link">
+            <NavLink to="/pokeinfo/1" className="navigation__link">
               Pokeinfo
             </NavLink>
           </li>

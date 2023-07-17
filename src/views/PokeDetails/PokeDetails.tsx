@@ -2,7 +2,6 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import "./PokeDetails.scss";
 import { useCallback, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "@/component/LoadingSpinner";
 import Tooltip from "@/component/Tooltip";
 
 const PokeDetails = () => {
