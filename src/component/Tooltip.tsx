@@ -10,17 +10,13 @@ interface TooltipProps {
 }
 
 const Tooltip = ({ delay, children, content, isLoading }: TooltipProps) => {
-  let timeout: ReturnType<typeof setTimeout>;
   const [active, setActive] = useState(false);
 
   const showTip = () => {
-    timeout = setTimeout(() => {
-      setActive(true);
-    }, delay || 400);
+    setActive(true);
   };
 
   const hideTip = () => {
-    clearInterval(timeout);
     setActive(false);
   };
 

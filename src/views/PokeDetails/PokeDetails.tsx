@@ -54,6 +54,36 @@ const PokeDetails = () => {
     ));
   }, [pokemonDetails.stats]);
 
+  const pokemonTypes = useMemo(() => {
+    return pokemonDetails.types.map((types) => (
+      <li
+        className={`pokedetails__list-item ${types.type.name}`}
+        key={types.type.name}
+      >
+        {types.type.name}
+      </li>
+    ));
+  }, [pokemonDetails.types]);
+
+  const pokemonAbilities = useMemo(() => {
+    return pokemonDetails.abilities.map((abilities, index) => (
+      <li
+        key={abilities.ability.name}
+        className="pokedetails__list-item ability"
+        onMouseOver={(e) => showAdditionalData(e, index)}
+        onMouseLeave={() => setShowAbilityInfo(false)}
+      >
+        <Tooltip
+          content={tooltip}
+          key={abilities.ability.name}
+          isLoading={isLoading}
+        >
+          {abilities.ability.name}
+        </Tooltip>
+      </li>
+    ));
+  }, [pokemonDetails.abilities, showAdditionalData, tooltip]);
+
   return (
     <div className="pokedetails">
       <h1 className="pokedetails__name">{pokemonDetails.name}</h1>
@@ -83,33 +113,11 @@ const PokeDetails = () => {
       </ul>
       <ul className="pokedetails__list">
         Abilities:
-        {pokemonDetails.abilities.map((abilities, index) => (
-          <li
-            key={abilities.ability.name}
-            className="pokedetails__list-item ability"
-            onMouseOver={(e) => showAdditionalData(e, index)}
-            onMouseLeave={() => setShowAbilityInfo(false)}
-          >
-            <Tooltip
-              content={tooltip}
-              key={abilities.ability.name}
-              isLoading={isLoading}
-            >
-              {abilities.ability.name}
-            </Tooltip>
-          </li>
-        ))}
+        {pokemonAbilities}
       </ul>
       <ul className="pokedetails__list">
         Types:
-        {pokemonDetails.types.map((types) => (
-          <li
-            className={`pokedetails__list-item ${types.type.name}`}
-            key={types.type.name}
-          >
-            {types.type.name}
-          </li>
-        ))}
+        {pokemonTypes}
       </ul>
       <button className="pokedetails__button" onClick={() => navigate(-1)}>
         Go back

@@ -1,7 +1,3 @@
-lazy function
-usememo
-usecallback
-
 search for pokemon
 useQuery tanstack, get all pokemons
 usecontext do szukania pokemona stan szukajki tylko
